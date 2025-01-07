@@ -72,9 +72,7 @@ If you'd like to contribute to the project, feel free to fork the repository and
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+ <p>© 2025 Text Summarizer. All Rights Reserved | Developed By Yadidiah Kanaparthi</p>
 
-## Contact
 
-For any questions or feedback, feel free to reach out to [yourname@example.com](mailto:yourname@example.com).
 
