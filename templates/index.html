@@ -1,0 +1,72 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Text Summarizer</h1>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container">
+        <h2>Summarize Your Text</h2>
+
+        <!-- Form for text summarization -->
+        <form action="/summarize" method="POST">
+            <label for="text">Enter text:</label>
+            <textarea name="text" id="text" rows="10" cols="50" required></textarea>
+
+            <label for="ratio">Summary Ratio (0 to 1):</label>
+            <input type="number" name="ratio" id="ratio" value="0.8" step="0.01" min="0" max="1">
+
+            <button type="submit">Summarize</button>
+        </form>
+
+        <!-- Summary Section -->
+        <div id="summary"></div>
+        
+        <!-- Sentence Scores Section -->
+        <div id="sentence_scores"></div>
+
+        <!-- Length Info -->
+        <h3>Original Text Length: <span id="original_text_length"></span></h3>
+        <h3>Summary Length: <span id="summary_length"></span></h3>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2025 Text Summarizer. All Rights Reserved | Developed By Yadidiah Kanaparthi</p>
+
+    </footer>
+
+    <script>
+        const form = document.querySelector("form");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+    
+            const formData = new FormData(form);
+            const response = await fetch("/summarize", {
+                method: "POST",
+                body: formData
+            });
+    
+            const result = await response.json();
+            document.getElementById("summary").innerHTML = result.summary;
+            document.getElementById("sentence_scores").innerHTML = Object.entries(result.sentence_scores)
+                .map(([sentence, score]) => `<p><strong>Sentence:</strong> ${sentence}<br><strong>Score:</strong> ${score}</p>`)
+                .join("");
+    
+            // Display lengths after the summary
+            document.getElementById("original_text_length").innerText = result.original_length;
+            document.getElementById("summary_length").innerText = result.summary_length;
+        });
+    </script>
+</body>
+</html>
