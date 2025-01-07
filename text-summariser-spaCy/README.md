@@ -29,11 +29,7 @@ This project is a web-based application that leverages Artificial Intelligence (
 
 ### Installation
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/ai-web-text-summarizer.git
-    cd ai-web-text-summarizer
-    ```
+1. Clone the repository or download the files:
 
 2. Install required dependencies:
     ```bash
